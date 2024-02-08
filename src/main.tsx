@@ -10,7 +10,6 @@ function Main() {
     <div className="flex flex-col min-h-screen">
       <Toaster
         richColors
-        position="top-center"
         className="z-[99999]"
         closeButton
       />
