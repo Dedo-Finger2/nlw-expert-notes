@@ -36,6 +36,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCard) {
     event.preventDefault();
 
     if (content === "") {
+      toast.warning("Anotações não podem ser salvas sem conteúdo!");
       return;
     }
 
@@ -44,9 +45,10 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCard) {
     setContent("");
     setShouldShowOnboarding(true);
 
-    toast.success("Nova nota criada!");
+    toast.success("Nova anotação criada!");
   }
 
+  // Função responsável por começar a gravação
   function handleStartRecording() {
     const isSpeechRecognitionAPIAvaliable =
       "SpeechRecognition" in window || "webkitSpeechRecognition" in window;
@@ -86,6 +88,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCard) {
     speechRecognition.start();
   }
 
+  // Função responsável por parar a gravação
   function handleStopRecording() {
     setIsRecording(false);
 
@@ -99,11 +102,11 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCard) {
       <Dialog.Trigger className="rounded-md flex flex-col text-left bg-slate-700 p-5 space-y-3 hover:ring-2 hover:ring-slate-600 outline-none focus-visible:ring-2 focus-visible:ring-lime-400">
         {/* Título do card */}
         <span className="text-sm font-medium text-slate-200">
-          Adicionar nota
+          Adicionar anotação
         </span>
         {/* Textinho */}
         <p className="text-sm leading-6 text-slate-400">
-          Grave uma nota em áudio que será convertida para texto
+          Grave uma anotação em áudio que será convertida para texto
           automaticamente.
         </p>
       </Dialog.Trigger>
@@ -120,7 +123,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCard) {
             <div className="flex flex-1 flex-col gap-3 p-5">
               {/* Título do card */}
               <span className="text-sm font-medium text-slate-300">
-                Adicionar nota
+                Adicionar anotação
               </span>
 
               {/* Textinho */}
@@ -132,7 +135,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCard) {
                     onClick={handleStartRecording}
                     type="button"
                   >
-                    gravando uma nota{" "}
+                    gravando uma anotação{" "}
                   </button>{" "}
                   em áudio ou se pereferir, {/* Usando o useState */}
                   <button
@@ -167,9 +170,9 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCard) {
               <button
                 type="button"
                 onClick={handleSaveNote}
-                className="w-full bg-lime-500 py-4 text-center text-lime-950 outline-none hover:bg-lime-600"
+                className="w-full bg-lime-500 py-4 text-center font-semibold text-lime-950 outline-none hover:bg-lime-600"
               >
-                Salvar nota
+                Salvar anotação
               </button>
             )}
           </form>

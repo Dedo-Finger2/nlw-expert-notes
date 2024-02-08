@@ -23,11 +23,12 @@ export function NoteCard({ note, onNoteDelete }: NoteCardProps) {
             locale: ptBR,
             addSuffix: true,
           })}
+          ...
         </span>
         {/* Textinho */}
         <p className="text-sm leading-6 text-slate-400">{note.content}</p>
 
-        <div className="absolute bottom-0 left-0 right-0 h-1/2 pointer-events-none bg-gradient-to-t from-black/60 to-black/0" />
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 pointer-events-none bg-gradient-to-t from-black/40 to-black/0" />
       </Dialog.Trigger>
 
       {/* Modal */}
@@ -46,6 +47,7 @@ export function NoteCard({ note, onNoteDelete }: NoteCardProps) {
                 locale: ptBR,
                 addSuffix: true,
               })}
+              ...
             </span>
             {/* Textinho */}
             <p className="text-sm leading-6 text-slate-400">{note.content}</p>
@@ -58,7 +60,7 @@ export function NoteCard({ note, onNoteDelete }: NoteCardProps) {
           >
             Deseja{" "}
             <span className="text-red-400 group-hover:underline">
-              apagar essa nota
+              apagar essa anotação
             </span>
             ?
           </button>
