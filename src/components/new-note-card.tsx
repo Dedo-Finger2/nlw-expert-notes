@@ -5,14 +5,21 @@ import { toast } from "sonner";
 
 // https://youtu.be/8TydWjnb0_s?t=2794
 
-export function NewNoteCard() {
+interface NewNoteCard {
+  onNoteCreated: (content: string) => void;
+}
+
+let speechRecognition: SpeechRecognition | null = null;
+
+export function NewNoteCard({ onNoteCreated }: NewNoteCard) {
   // Varíável e função que altera ela usando um estado
   const [shouldShowOnboarding, setShouldShowOnboarding] = useState(true);
+  const [isRecording, setIsRecording] = useState(false);
   const [content, setContent] = useState("");
 
   // Função que executa a função do estado, com ela podemos usar em botões ou outros elementos
   function handleStartEditor() {
-    setShouldShowOnboarding(false);
+    setShouldShowOnboarding(false); // Ativa a textarea
   }
 
   // Retorna a frase de seleção de opção de escrever texto caso o usuário apague todo o texto
@@ -20,7 +27,7 @@ export function NewNoteCard() {
     setContent(event.target.value); // Guardando o conteúdo do textarea
 
     if (event.target.value === "") {
-      setShouldShowOnboarding(true);
+      setShouldShowOnboarding(true); // Reseta o onborading
     }
   }
 
@@ -28,7 +35,63 @@ export function NewNoteCard() {
   function handleSaveNote(event: FormEvent) {
     event.preventDefault();
 
+    if (content === "") {
+      return;
+    }
+
+    onNoteCreated(content); // Cria a anotação
+
+    setContent("");
+    setShouldShowOnboarding(true);
+
     toast.success("Nova nota criada!");
+  }
+
+  function handleStartRecording() {
+    const isSpeechRecognitionAPIAvaliable =
+      "SpeechRecognition" in window || "webkitSpeechRecognition" in window;
+
+    if (!isSpeechRecognitionAPIAvaliable) {
+      alert(
+        "API de reconhecimento de fala não é suportada pelo seu navegador."
+      );
+      return;
+    }
+
+    setIsRecording(true);
+    setShouldShowOnboarding(false);
+
+    const SpeechRecogninitionAPI =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    speechRecognition = new SpeechRecogninitionAPI();
+
+    speechRecognition.lang = "pt-BR";
+    speechRecognition.continuous = true;
+    speechRecognition.maxAlternatives = 1;
+    speechRecognition.interimResults = true;
+
+    speechRecognition.onresult = (event) => {
+      const transcription = Array.from(event.results).reduce((text, result) => {
+        return text.concat(result[0].transcript);
+      }, "");
+
+      setContent(transcription);
+    };
+
+    speechRecognition.onerror = (event) => {
+      console.error(event);
+    };
+
+    speechRecognition.start();
+  }
+
+  function handleStopRecording() {
+    setIsRecording(false);
+
+    if (speechRecognition !== null) {
+      speechRecognition.stop();
+    }
   }
 
   return (
@@ -49,11 +112,11 @@ export function NewNoteCard() {
       <Dialog.Portal>
         {/* Overlay */}
         <Dialog.Overlay className="inset-0 fixed bg-black/40" />
-        <Dialog.Content className="fixed overflow-hidden left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[640px] h-[60vh] w-full bg-slate-700 rounded-md flex flex-col outline-none">
+        <Dialog.Content className="fixed overflow-hidden inset-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[640px] md:h-[60vh] w-full bg-slate-700 md:rounded-md flex flex-col outline-none">
           <Dialog.Close className="absolute top-0 right-0 bg-red-700 p-1.5 text-slate-400 rounded-sm hover:bg-red-600">
             <X className="size-5" />
           </Dialog.Close>
-          <form onSubmit={handleSaveNote} className="flex-1 flex flex-col">
+          <form className="flex-1 flex flex-col">
             <div className="flex flex-1 flex-col gap-3 p-5">
               {/* Título do card */}
               <span className="text-sm font-medium text-slate-300">
@@ -64,32 +127,51 @@ export function NewNoteCard() {
               {shouldShowOnboarding ? (
                 <p className="leading-6 text-slate-400 text-sm">
                   Comece{" "}
-                  <button className="text-lime-400 font-medium hover:underline">
+                  <button
+                    className="text-lime-400 font-medium hover:underline"
+                    onClick={handleStartRecording}
+                    type="button"
+                  >
                     gravando uma nota{" "}
-                  </button>
+                  </button>{" "}
                   em áudio ou se pereferir, {/* Usando o useState */}
                   <button
                     className="text-lime-400 font-medium hover:underline"
                     onClick={handleStartEditor}
+                    type="button"
                   >
                     utilize apenas texto
                   </button>
+                  .
                 </p>
               ) : (
                 <textarea
                   autoFocus
                   className="text-sm leading-6 text-slate-400 bg-transparent resize-none flex-1 outline-none"
                   onChange={handleContentChange}
+                  value={content}
                 />
               )}
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-lime-500 py-4 text-center text-lime-950 outline-none hover:bg-lime-600"
-            >
-              Salvar nota
-            </button>
+            {isRecording ? (
+              <button
+                type="button"
+                onClick={handleStopRecording}
+                className="w-full flex items-center justify-center gap-2 bg-slate-900 py-4 text-center text-slate-300 outline-none hover:text-slate-100"
+              >
+                <div className="size-3 rounded-full bg-red-500 animate-pulse" />
+                Gravando! (clique para interromper)
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={handleSaveNote}
+                className="w-full bg-lime-500 py-4 text-center text-lime-950 outline-none hover:bg-lime-600"
+              >
+                Salvar nota
+              </button>
+            )}
           </form>
         </Dialog.Content>
       </Dialog.Portal>
