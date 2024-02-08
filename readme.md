@@ -1,29 +1,31 @@
-# Export notes
+# Apresentando o Sistema de Anotações Avançado
 
-Um projeto feito durante o evento NLW (next-level-week) 14 da Rocketseat, este sistema de anotações possibilita o usuário
-criar anotações diversas sobre os tópicos que lhe interessar, porém com um diferencial. Diferencial esse que se trata da 
-possibilidade do usuário fazer suas anotações usando apenas sua voz!
+Desenvolvido durante o evento NLW (Next-Level-Week) 14 da Rocketseat, um sistema de anotações que permite ao usuário criar anotações sobre qualquer tópico de interesse. O diferencial deste sistema é a capacidade de criar anotações utilizando apenas a voz do usuário! Graças à integração com uma API de reconhecimento de voz e transcrição de voz para texto nativa em alguns navegadores, este sistema oferece uma experiência de usuário única e confortável. Agora, você tem a opção de redigir suas anotações usando sua voz ou digitando-as da maneira tradicional.
 
-Com a utilização de uma API de reconhecimento de voz e transscrição de voz para texto, este sistema é capaz de fornecer uma
-experiência mais confortável e única ao usuário, dando opção de redigir suas anotações usando sua voz ou apenas digitando elas
-normalmente.
+# Recursos Inovadores
+- Criação de anotações usando texto ou reconhecimento de voz;
+- Transcrição de voz para texto em tempo real;
+- Armazenamento seguro das anotações criadas;
+- Capacidade de excluir anotações já criadas;
+- Visualização clara do conteúdo das anotações;
+- Mensagens informativas ao usuário para uma experiência de usuário aprimorada;
+- Design responsivo para dispositivos móveis;
+- Pesquisa eficiente por anotações já escritas.
 
-# Funcionalidades
+# Tecnologias Utilizadas
 
-- Criação de anotações usando texto;
-- Criação de anotações usando reconhecimento de voz;
-- Trancrição de voz para texto em tempo real;
-- Armazenamento das anotações criadas;
-- Deleção de anotações já criadas;
-- Exibição do conteúdo das anotações;
-- Mensagens informativas ao usuário;
-- Responsividade para dispositivos móveis;
-- Busca por anotações já escritas.
+- React.js: Uma biblioteca JavaScript para a construção de interfaces de usuário;
+- Sonner: Uma biblioteca de toasters;
+- Date-fns: Biblioteca moderna de manipulação de datas;
+- Radix: Biblioteca de design de interface do usuário;
+- Figma: Ferramenta de design de interface do usuário;
+- SpeechRecognitionAPI: API nativa de reconhecimento por voz;
 
-# Tecnologias
+# Compatibilidade
 
-- React.js;
-- Sonner;
-- Date-fns;
-- Radix;
-- Figma.
+- Google Chrome;
+- Firefox;
+- Edge;
+- Chrome Mobile.
+
+Este sistema de anotações avançado é mais do que apenas um aplicativo de anotações - é uma revolução na maneira como você registra e recupera informações.
