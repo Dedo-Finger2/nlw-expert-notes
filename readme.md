@@ -1,4 +1,4 @@
-# Apresentando o Sistema de Anotações Avançado
+# Expert Notes
 
 Desenvolvido durante o evento NLW (Next-Level-Week) 14 da Rocketseat, um sistema de anotações que permite ao usuário criar anotações sobre qualquer tópico de interesse. O diferencial deste sistema é a capacidade de criar anotações utilizando apenas a voz do usuário! Graças à integração com uma API de reconhecimento de voz e transcrição de voz para texto nativa em alguns navegadores, este sistema oferece uma experiência de usuário única e confortável. Agora, você tem a opção de redigir suas anotações usando sua voz ou digitando-as da maneira tradicional.
 
