@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import logo from "./assets/logo.svg";
 import { NewNoteCard } from "./components/new-note-card";
 import { NoteCard } from "./components/note-card";
+import { toast } from "sonner";
 
 interface Note {
   id: string;
@@ -46,6 +47,8 @@ export function App() {
     setNotes(notesArray);
 
     localStorage.setItem("notes", JSON.stringify(notesArray));
+
+    toast.success("Anotação deletada!");
   }
 
   // Função que alimenta a variável de estado de busca de anotações
