@@ -2,7 +2,6 @@ import { ChangeEvent, useState } from "react";
 import logo from "./assets/logo.svg";
 import { NewNoteCard } from "./components/new-note-card";
 import { NoteCard } from "./components/note-card";
-import { Footer } from "./components/footer";
 
 interface Note {
   id: string;
@@ -73,7 +72,7 @@ export function App() {
       <form className="w-full">
         <input
           type="text"
-          placeholder="Busque em usas notas..."
+          placeholder="Busque suas anotações..."
           onChange={handleSearch}
           className="w-full bg-transparent text-3xl font-semibold tracking-tight outline-none placeolder:text-slate-500"
         />
