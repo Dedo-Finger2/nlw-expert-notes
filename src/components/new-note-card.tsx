@@ -36,7 +36,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCard) {
     event.preventDefault();
 
     if (content === "") {
-      toast.warning("Anotações não podem ser salvas sem conteúdo!");
+      toast.warning("Anotação sem conteúdo!");
       return;
     }
 
