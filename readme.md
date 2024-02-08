@@ -37,6 +37,7 @@ Se você tiver alguma dúvida, sugestão ou se quiser colaborar com o projeto, f
 - **Nome do Responsável**: Antonio Mauricio de Almeida Neto
 - **Email**: antonioimportant@gmail.com
 - **LinkedIn**: https://www.linkedin.com/in/antonio-mauricio-4645832b3/
+- **Instagram**: https://www.instagram.com/antonioalmeida2003/
 
 Agradecemos o seu interesse e estamos ansiosos para ouvir de você!
 
