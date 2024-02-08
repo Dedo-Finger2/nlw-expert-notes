@@ -29,3 +29,14 @@ Desenvolvido durante o evento NLW (Next-Level-Week) 14 da Rocketseat, um sistema
 - Chrome Mobile.
 
 Este sistema de anotações avançado é mais do que apenas um aplicativo de anotações - é uma revolução na maneira como você registra e recupera informações.
+
+# Contato
+
+Se você tiver alguma dúvida, sugestão ou se quiser colaborar com o projeto, fique à vontade para nos contatar:
+
+- **Nome do Responsável**: Antonio Mauricio de Almeida Neto
+- **Email**: antonioimportant@gmail.com
+- **LinkedIn**: https://www.linkedin.com/in/antonio-mauricio-4645832b3/
+
+Agradecemos o seu interesse e estamos ansiosos para ouvir de você!
+
